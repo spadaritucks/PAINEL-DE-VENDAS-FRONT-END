@@ -1,0 +1,32 @@
+.modal-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 120vh;
+    max-width: 600px;
+    position:absolute;
+    top: 30%;
+    left: 50%;
+    background-color: white;
+    box-shadow: 3px 3px 3px 3px #ccc;
+    z-index: 1000;
+    padding: 20px;
+    
+}
+
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+@media (max-width:990px) {
+    .modal-content{
+        min-width: 350px;
+    }
+}

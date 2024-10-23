@@ -1,0 +1,81 @@
+.area-cadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 10px;
+}
+
+.vendas-form-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.addProduto-Content{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.produto-form-content{
+    text-align: start;
+}
+
+.produto-form-content form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px;
+    
+}
+
+.vendas-form-content form{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    box-shadow: 3px 3px 3px 3px #ccc;
+    padding: 10px 20px;
+    margin: 15px;
+}
+
+.product-calc-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.product-calc-content button{
+    margin-top: 18px ;
+}
+
+.parcelas-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.parcelas-table{
+    border-collapse: collapse;
+ }
+ 
+.parcelas-table th, td{
+     border-bottom: 1px solid #ccc;
+     margin: 10px;
+     padding: 10px;
+     text-align: center;
+     gap: 20px; 
+     height: 40px;
+     
+ }
+ 
+

@@ -1,0 +1,26 @@
+.input-wrapper{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.input-wrapper input{
+    border: none;
+    box-shadow: 2px 2px 2px 2px #ccc;
+    padding: 5px 10px;
+    border-radius: 4px;
+    width: 220px;
+}
+
+.input-wrapper input:focus{
+    outline: none;
+}
+
+.input-wrapper input:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.input-wrapper label{
+   font-size: 12px;
+}

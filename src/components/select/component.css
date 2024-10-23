@@ -1,0 +1,19 @@
+.select-wrapper{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.select-wrapper select{
+    border: none;
+    box-shadow: 2px 2px 2px 2px #ccc;
+    padding: 5px 10px;
+    border-radius: 4px;
+    width: 220px;
+}
+
+
+
+.select-wrapper label{
+   font-size: 12px;
+}

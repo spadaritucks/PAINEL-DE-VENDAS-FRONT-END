@@ -1,95 +1,55 @@
+'use client'
 import Image from "next/image";
-import styles from "./page.module.css";
+import "./page.css";
+import { Main } from "@/layouts/main/layout";
+import Card from "@/components/card/component";
+import notebook from '../../public/notebook.jpg'
+import Modal from "@/components/modal/component";
+import { useRef, useState } from "react";
+import Input from "@/components/input/component";
+import Button from "@/components/button/component";
+import { LoginAuth } from "@/api/login/api";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  const formRef = useRef<HTMLFormElement>(null)
+
+  const handleSubmitLogin = async () => {
+
+    if(formRef.current){
+      const formdata = new FormData(formRef.current)
+
+      const response = await LoginAuth(formdata)
+
+      if (response) {
+        if (response.status === false) {
+            alert('Erro' + response.message)
+            return
+        } else {
+            alert('Sucesso ' + response.message)
+            window.location.href = '/vendas'
+        }
+    }
+    }
+  }
+
+
+  return (
+  
+
+      <section className="login-menu">
+        <div className="login-content">
+          <h2>Login do Vendedor</h2>
+          <form action="" onSubmit={handleSubmitLogin} ref={formRef}>
+            <Input label="CPF" name="cpf" placeholder="Insira o seu CPF" type="text" />
+            <Input label="Senha" name="password" type="password" />
+            <Button type="submit" buttonName="Login" variant="primary" />
+          </form>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      
+
+  
   );
 }

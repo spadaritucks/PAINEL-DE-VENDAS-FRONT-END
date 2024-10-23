@@ -1,0 +1,34 @@
+.login-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+   
+   
+}
+
+.login-content{
+    width: 300px;
+    height: 300px;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 3px 3px 3px 3px #ccc;
+    gap: 15px;
+    text-align: start;
+}
+
+.login-content form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+   
+    
+}
