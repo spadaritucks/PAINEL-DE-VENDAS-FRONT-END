@@ -175,7 +175,7 @@ export default function VendaProdutos() {
                                 <>
                                     <option disabled value='selecione'>Selecione</option>
                                     {Produtos.map((produto) => (
-                                        <option value={produto.id}>{produto.nome} - R${produto.valor.replace('.', ',')}</option>
+                                        <option key={produto.id} value={produto.id}>{produto.nome} - R${produto.valor.replace('.', ',')}</option>
                                     ))}
                                 </>
                             } />
@@ -190,7 +190,7 @@ export default function VendaProdutos() {
                             <>
                                 <option disabled value='selecione'>Selecione</option>
                                 {Clientes.map((cliente) => (
-                                    <option value={cliente.id}>{cliente.nome}</option>
+                                    <option key={cliente.id} value={cliente.id}>{cliente.nome}</option>
                                 ))}
                             </>
                         } />
