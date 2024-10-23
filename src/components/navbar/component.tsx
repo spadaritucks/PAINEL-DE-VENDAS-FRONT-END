@@ -74,6 +74,7 @@ export default function Navbar({ title }: NavbarProps) {
         <nav className="navbar-content">
             <h2>{title}</h2>
             <div className="nav-buttons">
+                <Link href='/vendas'>Painel de Vendas</Link>
                 <Link href='/venda-produtos'>Criar Venda</Link>
                 <Button type="button" buttonName="Cadastrar Vendedor" variant="primary" onClick={() => handleOpenModalCadastrarVendedor()} disabled={cadastrarCliente} />
                 <Button type="button" buttonName="Cadastrar Cliente" variant="secondary" onClick={() => handleOpenModalCadastrarCliente()} disabled={cadastrarVendedor} />
