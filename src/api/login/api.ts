@@ -22,7 +22,7 @@ export const LoginAuth = async (formdata: FormData) => {
     } catch (error: any) {
         if (error.response && error.response.data && error.response.data.message) {
             return {
-                status: 'false',
+                status: false,
                 message: error.response.data.message
             };
         }
