@@ -8,6 +8,7 @@ import { api } from "../axios"
     vendedor_id: number;
     valor_integral: number
     parcelas: number
+    forma_pagamento: string;
     created_at: string;
 }
 

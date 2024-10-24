@@ -69,9 +69,10 @@ export default function Vendas() {
                                         <tr key={venda.id}>
                                             <td>{venda.id}</td>
                                             <td>{clienteFiltrado?.nome}</td>
-                                            <td>{venda.created_at}</td>
+                                            <td>{new Date(venda.created_at).toLocaleDateString('pt-BR')}</td>
                                             <td>{venda.valor_integral}</td>
                                             <td>{venda.parcelas}</td>
+                                            <td>{venda.forma_pagamento}</td>
                                             <td>{vendedorFiltrato?.nome}</td>
                                         </tr>
 

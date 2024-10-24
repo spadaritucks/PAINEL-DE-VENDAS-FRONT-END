@@ -10,6 +10,7 @@ import { createProdutos, getProdutos, ProdutosProps } from "@/api/produtos/api"
 import Select from "@/components/select/component"
 import { ClientesProps, getClientes } from "@/api/clientes/api"
 import { createVendas } from "@/api/vendas/api"
+import { UsuariosProps } from "@/api/usuarios/api"
 
 interface ParcelasProps {
     valor: string
@@ -27,9 +28,17 @@ export default function VendaProdutos() {
     const [total, setTotal] = useState<number>(0)
     const [PagamentoParcelado, setPagamentoParcelado] = useState<boolean>(false)
     const [parcelasNumber, setParcelasNumber] = useState<number>(0)
- 
+    const [user, setUser] = useState<UsuariosProps>()
+
     const [parcelas, setParcelas] = useState<ParcelasProps[]>([]);
     const formRef = useRef<HTMLFormElement>(null);
+
+    useEffect(() => {
+        const userResponse = sessionStorage.getItem('user');
+        if (userResponse) {
+            setUser(JSON.parse(userResponse));
+        }
+    }, [])
 
     useEffect(() => {
 
@@ -70,13 +79,21 @@ export default function VendaProdutos() {
 
         if (formRef.current) {
             const formdata = new FormData(formRef.current);
-            const response = await createVendas(formdata);
-            if (response) {
-                if (response.status === false) {
-                    alert('Erro' + response.message)
-                    return
-                } else {
-                    alert('Sucesso ' + response.message)
+            const vendedor_id = user?.id
+            console.log(vendedor_id)
+
+            if (vendedor_id) {
+                formdata.append('vendedor_id', vendedor_id.toString())
+                const response = await createVendas(formdata);
+                console.log(formdata)
+
+                if (response) {
+                    if (response.status === false) {
+                        alert('Erro' + response.message)
+                        return
+                    } else {
+                        alert('Sucesso ' + response.message)
+                    }
                 }
             }
         }
@@ -168,7 +185,7 @@ export default function VendaProdutos() {
                         <Button buttonName="Adicionar Produto" type="button" variant="primary" onClick={() => handleModalCreateProdutos()} />
                     </div>
 
-                    <form ref = {formRef} onSubmit={handleSubmitVenda}>
+                    <form ref={formRef} onSubmit={handleSubmitVenda}>
 
                         <div className="product-calc-content" style={{ gridColumn: '1 / -1' }}>
                             <Select label="Selecione um Produto" onChange={handleChangeProduto} defaultValue="selecione" name="cliente_id" option={
@@ -185,7 +202,7 @@ export default function VendaProdutos() {
                         </div>
 
 
-                        <Input label="Valor Total" type="text" name="valor_integral" value={total ? "R$" + total.toFixed(2).replace('.', ',') : ''} readOnly={true} />
+                        <Input label="Valor Total" type="text" name="valor_integral" value={total ? total.toFixed(2).replace('.', ',') : ''} readOnly={true} />
                         <Select label="Selecione o Cliente (Opcional)" defaultValue="selecione" name="cliente_id" option={
                             <>
                                 <option disabled value='selecione'>Selecione</option>
@@ -236,7 +253,7 @@ export default function VendaProdutos() {
                                 </table>
 
                             </div>}
-                        <div className="submit-form-area" style={{gridColumn: '1 / -1'}}>
+                        <div className="submit-form-area" style={{ gridColumn: '1 / -1' }}>
                             <Button buttonName="Cadastrar Venda" type="submit" variant="primary" />
                         </div>
 

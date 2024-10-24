@@ -27,6 +27,9 @@ export default function Home() {
           return 
         } else {
           alert('Sucesso ' + response.message)
+          sessionStorage.setItem('user', JSON.stringify(response.user))
+          console.log(response.user)
+          sessionStorage.setItem('token', response.token)
           window.location.href = '/vendas'
         }
       }
